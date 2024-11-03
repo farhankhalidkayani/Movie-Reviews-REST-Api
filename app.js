@@ -4,6 +4,7 @@ const cors = require("cors");
 const connect = require("./src/db/connect.js");
 const userRoutes = require("./src/routes/user.routes.js");
 const movieRoutes = require("./src/routes/movie.routes.js");
+const reviewRoutes = require("./src/routes/review.routes.js");
 
 dotenv.config();
 const app = express();
@@ -22,3 +23,4 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/users", userRoutes);
 app.use("/api/movies", movieRoutes);
+app.use("/api/movies", reviewRoutes);
