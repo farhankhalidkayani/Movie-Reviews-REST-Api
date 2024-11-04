@@ -41,6 +41,11 @@ const deleteReview = asyncHandler(async (req, res) => {
     throw new Error("Unauthorized, no user logged in");
   }
   const reviewId = req.params.reviewId;
+  const review = await Review.findById(reviewId);
+  if (req.user.id !== review.user) {
+    res.status(401);
+    throw new Error("Unauthorized, You didnt post this review");
+  }
   try {
     const review = await Review.findByIdAndDelete(reviewId);
 
